@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa da Biazinha</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        #vinizinho-button {
+            font-size: 20px;
+            padding: 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #choice-buttons button {
+            font-size: 18px;
+            padding: 15px;
+            margin: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #choice-buttons .pink {
+            background-color: pink;
+            color: white;
+        }
+
+        #choice-buttons .yellow {
+            background-color: yellow;
+            color: black;
+        }
+
+        #message {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .wrong-color {
+            color: red;
+        }
+
+        .right-color {
+            color: green;
+        }
+
+        .emojis {
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Surpresa para Biazinha!</h1>
+    
+    <button id="vinizinho-button">Vinizinho</button>
+
+    <div id="color-selection" class="hidden">
+        <h2>Escolha a cor mais legal</h2>
+        <div id="choice-buttons">
+            <button class="pink">Rosa</button>
+            <button class="yellow">Amarelo</button>
+        </div>
+    </div>
+
+    <div id="message" class="hidden"></div>
+
+    <script>
+        const vinizinhoButton = document.getElementById('vinizinho-button');
+        const colorSelection = document.getElementById('color-selection');
+        const message = document.getElementById('message');
+        const pinkButton = document.querySelector('.pink');
+        const yellowButton = document.querySelector('.yellow');
+
+        vinizinhoButton.addEventListener('click', () => {
+            vinizinhoButton.classList.add('hidden');
+            colorSelection.classList.remove('hidden');
+        });
+
+        pinkButton.addEventListener('click', () => {
+            message.innerHTML = 'Você errou! <br>Dica: Não é essa cor que você acabou de escolher :)';
+            message.classList.add('wrong-color');
+            message.classList.remove('hidden');
+            setTimeout(() => {
+                message.classList.add('hidden');
+                colorSelection.classList.remove('hidden');
+            }, 3000);
+        });
+
+        yellowButton.addEventListener('click', () => {
+            message.innerHTML = '🥰🤍 O vinizinho te ama com todo o amor do mundo, além do infinito! 🤍🥰<br>' +
+            'Ele faria qualquer coisa por você sem nem questionar! Ele disse que te ama tanto que iria pegar 200 galáxias para você! ' +
+            'Você é a pessoa mais especial do mundo para ele!<br> 🥰🤍 O vinizinho vai te amar para sempre! 🥰🤍';
+            message.classList.add('right-color');
+            message.classList.remove('hidden');
+            colorSelection.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
